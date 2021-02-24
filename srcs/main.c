@@ -6,7 +6,7 @@
 /*   By: babdelka <babdelka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 21:42:11 by babdelka          #+#    #+#             */
-/*   Updated: 2021/02/21 17:17:24 by babdelka         ###   ########.fr       */
+/*   Updated: 2021/02/24 17:06:39 by babdelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_vec		ft_shade_object(t_hit *hit, t_light *lights, t_object *lst, t_ray *ray)
 	return (color);
 }
 
-t_vec		ft_reflect(t_hit hit, t_object *lst, t_ray ray)
+t_vec		ft_reflect(t_hit hit, t_mx *mx, t_ray ray)
 {
 	t_vec		color;
 	int			refle = 0;
@@ -97,7 +97,7 @@ t_vec		ft_reflect(t_hit hit, t_object *lst, t_ray ray)
 		ft_compute_normals(&hit, &ray);
 		ray.direction = ft_vectoradd(ft_vectormulti(ft_vectormulti(hit.n, ft_dotproduct(ray.direction, hit.n)), -2.0f), hit.n);
 		ray.source = hit.p;
-		if (raycast(lst, &ray, &hit))
+		if (raycast(mx->objects, &ray, &hit))
 		{
 			if (hit.object->inside == MIRROR){
 				color = ft_vectormulti(color, 0.0f);
@@ -110,6 +110,7 @@ t_vec		ft_reflect(t_hit hit, t_object *lst, t_ray ray)
 			refle = 0;
 		var -= 0.03;
 	}
+	color = shadowinside(mx , color, hit);
 	return (color);
 }
 
@@ -187,6 +188,7 @@ t_vec		ft_refract(t_hit hit, t_mx *mx, t_ray ray)
 	}
 	else
 		refra = 0;
+	color = shadowinside(mx, color, hit);
 	return (color);
 }
 
@@ -252,7 +254,7 @@ void	update(t_mx *mx)
 					var = 4;
 				else
 					var = 0.32;
-				color = ft_vectoradd(color, ft_vectormulti(ft_reflect(hit, mx->objects, ray), var));
+				color = ft_vectoradd(color, ft_vectormulti(ft_reflect(hit, mx, ray), var));
 				color = ft_vectoradd(color, ft_vectormulti(ft_refract(hit, mx, ray), 0.32));
 				mx->rt[(WIN_H - 1 - y) * WIN_W + x] = rgb_to_int(clamp_vect(color));
 			}

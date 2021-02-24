@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rtv1.h                                             :+:      :+:    :+:   */
+/*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: babdelka <babdelka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 00:31:07 by ahkhilad          #+#    #+#             */
-/*   Updated: 2021/02/21 17:17:58 by babdelka         ###   ########.fr       */
+/*   Updated: 2021/02/24 17:02:58 by babdelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,4 +252,5 @@ void					uv_chek(t_object *obj, int width, int height,int size);
 t_vec					vector3(float x, float y, float z);
 int						vec3equ(t_vec v1, t_vec v2);
 void					gettexture(t_hit *hit);
+t_vec					shadowinside(t_mx *mx, t_vec color, t_hit hit);
 #endif

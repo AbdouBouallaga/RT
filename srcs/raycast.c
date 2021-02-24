@@ -6,7 +6,7 @@
 /*   By: babdelka <babdelka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 15:14:20 by babdelka          #+#    #+#             */
-/*   Updated: 2021/02/21 17:17:46 by babdelka         ###   ########.fr       */
+/*   Updated: 2021/02/24 17:02:32 by babdelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,28 @@ int				shadow_cast(t_object *lst, t_ray *ray, float *tmin)
 		p = p->next;
 	}
 	return (0);
+}
+
+t_vec	shadowinside(t_mx *mx, t_vec color, t_hit hit)
+{
+	t_vec		light_dir;
+	t_ray		shadow_ray;
+	t_light		*light;
+	float		t;
+
+	shadow_ray.source = hit.p;
+	light = mx->lights;
+	while (light)
+	{
+		light_dir = ft_normalize(ft_vectorsub(light->pos, hit.p));
+		shadow_ray.direction = light_dir;
+		t = ft_magnitude(ft_vectorsub(light->pos, hit.p));
+		if (!shadow_cast(mx->objects, &shadow_ray, &t)){
+			color = color;
+		}
+		else
+			color = ft_vectormulti(color, 0.55f);
+		light = light->next;
+	}
+	return(color);
 }
