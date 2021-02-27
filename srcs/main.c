@@ -6,7 +6,7 @@
 /*   By: babdelka <babdelka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 21:42:11 by babdelka          #+#    #+#             */
-/*   Updated: 2021/02/24 17:06:39 by babdelka         ###   ########.fr       */
+/*   Updated: 2021/02/27 16:24:17 by babdelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,6 +230,14 @@ t_vec		ft_refract(t_hit hit, t_mx *mx, t_ray ray)
 // 	return (color);
 // }
 
+void	fixexposure(t_vec *color)
+{
+	float exposure = -1.35f;
+	color->x = 1.1f - expf(color->x * exposure);
+	color->y = 1.1f - expf(color->y * exposure);
+	color->z = 1.1f - expf(color->z * exposure);
+}
+
 void	update(t_mx *mx)
 {
 	t_ray	ray;
@@ -256,6 +264,7 @@ void	update(t_mx *mx)
 					var = 0.32;
 				color = ft_vectoradd(color, ft_vectormulti(ft_reflect(hit, mx, ray), var));
 				color = ft_vectoradd(color, ft_vectormulti(ft_refract(hit, mx, ray), 0.32));
+				fixexposure(&color);
 				mx->rt[(WIN_H - 1 - y) * WIN_W + x] = rgb_to_int(clamp_vect(color));
 			}
 			x+=1;
@@ -283,9 +292,6 @@ int		main(int ac, char **av)
 				p = v.objects;
 				while(p)
 				{
-					printf("------ %d\n", p->reflection);
-					if (p->type == SPHERE)
-						printf("------ %d\n", p->reflection);
 					p = p->next;				
 				}
 				run(&v);}

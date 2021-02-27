@@ -6,7 +6,7 @@
 /*   By: babdelka <babdelka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:12:21 by babdelka          #+#    #+#             */
-/*   Updated: 2021/02/21 17:17:39 by babdelka         ###   ########.fr       */
+/*   Updated: 2021/02/27 15:53:36 by babdelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ t_vec			string_to_vect(char *str)
 int		ft_check_int(char *str)
 {
 	int nbr;
-	printf(">>>>>> %s <<<<<<<\n", str);
 	nbr = atoi(str);
 	if (nbr == 0 || nbr == 1)
 		return (1);

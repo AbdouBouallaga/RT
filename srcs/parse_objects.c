@@ -6,7 +6,7 @@
 /*   By: babdelka <babdelka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:11:31 by babdelka          #+#    #+#             */
-/*   Updated: 2021/02/21 17:17:34 by babdelka         ###   ########.fr       */
+/*   Updated: 2021/02/27 15:49:42 by babdelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,7 @@ int				ft_parse_plane(t_mx *v, char **token)
 			object.type = PLANE;
 			// uv_chek(&object ,200,200,20);
 			tokenfill_plane(token, &object);
-			printf(">>>111>>>>>>>>>>>>>>>>>>>%d\n",object.texture.width);
 			ft_object_push(&v->objects, ft_object_new(object));
-			printf(">>>!!!>>>>>>>>>>>>>>>>>>>%d\n",object.texture.width);
 		}
 		else
 			return (0);
