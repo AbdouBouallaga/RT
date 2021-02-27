@@ -6,7 +6,7 @@
 /*   By: babdelka <babdelka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:12:21 by babdelka          #+#    #+#             */
-/*   Updated: 2021/02/27 15:53:36 by babdelka         ###   ########.fr       */
+/*   Updated: 2021/02/27 18:15:50 by babdelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int				ft_split_check(char *line)
 	char		**tab;
 	int			i;
 	static char	*elements[] = \
-	{"camera", "light", "sphere", "plane", "cone", "cylinder"};
+	{"camera", "light", "sphere", "plane", "cone", "cylinder", "spotlight"};
 
 	if (!ft_check_empty_lines(line))
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: babdelka <babdelka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 15:14:20 by babdelka          #+#    #+#             */
-/*   Updated: 2021/02/24 17:02:32 by babdelka         ###   ########.fr       */
+/*   Updated: 2021/02/27 18:27:47 by babdelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ t_vec	shadowinside(t_mx *mx, t_vec color, t_hit hit)
 			color = color;
 		}
 		else
-			color = ft_vectormulti(color, 0.55f);
+			color = ft_vectormulti(color, 0.85f);
 		light = light->next;
 	}
 	return(color);

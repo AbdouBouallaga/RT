@@ -6,7 +6,7 @@
 /*   By: babdelka <babdelka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:11:31 by babdelka          #+#    #+#             */
-/*   Updated: 2021/02/27 15:49:42 by babdelka         ###   ########.fr       */
+/*   Updated: 2021/02/27 18:29:00 by babdelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,47 @@ int				ft_parse_light(t_mx *v, char **token)
 				light.color = vect_from_hexa(ft_special_atoi_base(token[3]));
 			ft_light_push(&v->lights, \
 			ft_light_new(light.pos, light.color, light.intensity));
+		}
+		else
+			return (0);
+	else
+		return (0);
+	return (1);
+}
+
+int				ft_parse_spotlight(t_mx *v, char **token)
+{
+	t_light		light;
+	int			len;
+	int x = 0;
+	int y = 0;
+	int j = 0;
+	float spacer = 1.25;
+	t_vec pos;
+
+	len = ft_strsplit_len(token);
+	if (len == 5 && token)
+		if (ft_check_vectors(token[1]) && ft_check_positive_floats(token[2])
+				&& ft_check_hex_color(token[3])
+				&& ft_check_positive_floats(token[4]))
+		{
+			pos = string_to_vect(token[1]);
+			j = (int)ft_atof(token[2]);
+			while (y <= j){
+				x = 0;
+				while (x <= j){
+					ft_bzero(&light, sizeof(t_light));
+					pos = ft_vectoradd(pos, vector3(spacer,0,0));
+					light.pos = pos;
+					light.intensity = ft_atof(token[2]);
+					light.color = vect_from_hexa(ft_special_atoi_base(token[3]));
+					ft_light_push(&v->lights, \
+					ft_light_new(light.pos, light.color, light.intensity));
+					x++;
+				}
+				pos = ft_vectoradd(pos, vector3(0,spacer,0));
+				y++;
+			}
 		}
 		else
 			return (0);

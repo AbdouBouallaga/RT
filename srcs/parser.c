@@ -6,7 +6,7 @@
 /*   By: babdelka <babdelka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/04 21:42:36 by babdelka          #+#    #+#             */
-/*   Updated: 2021/02/21 17:17:42 by babdelka         ###   ########.fr       */
+/*   Updated: 2021/02/27 18:15:58 by babdelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ int			ft_token_handle(t_mx *v, char **token)
 {
 	if (token[0] && ft_strequ(token[0], "light"))
 		if (!ft_parse_light(v, token))
+			return (0);
+	if (token[0] && ft_strequ(token[0], "spotlight"))
+		if (!ft_parse_spotlight(v, token))
 			return (0);
 	if (token[0] && ft_strequ(token[0], "sphere"))
 		if (!ft_parse_sphere(v, token))
