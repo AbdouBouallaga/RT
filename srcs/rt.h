@@ -6,7 +6,7 @@
 /*   By: babdelka <babdelka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 00:31:07 by ahkhilad          #+#    #+#             */
-/*   Updated: 2021/02/27 18:15:10 by babdelka         ###   ########.fr       */
+/*   Updated: 2021/03/06 17:35:31 by babdelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,4 +254,6 @@ int						vec3equ(t_vec v1, t_vec v2);
 void					gettexture(t_hit *hit);
 t_vec					shadowinside(t_mx *mx, t_vec color, t_hit hit);
 int						ft_parse_spotlight(t_mx *v, char **token);
+t_ray					raycastloop(t_object *p, t_hit *hit, t_ray *raw, float t);
+t_object				*shadow_l(t_object *lst, t_ray *ray, float *tmin);
 #endif

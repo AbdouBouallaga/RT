@@ -6,7 +6,7 @@
 /*   By: babdelka <babdelka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 18:11:31 by babdelka          #+#    #+#             */
-/*   Updated: 2021/02/27 18:29:00 by babdelka         ###   ########.fr       */
+/*   Updated: 2021/03/05 18:57:33 by babdelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ int				ft_parse_spotlight(t_mx *v, char **token)
 	int x = 0;
 	int y = 0;
 	int j = 0;
-	float spacer = 1.25;
+	float spacer = 0.75;
 	t_vec pos;
 
 	len = ft_strsplit_len(token);
@@ -181,7 +181,8 @@ int				ft_parse_spotlight(t_mx *v, char **token)
 				&& ft_check_positive_floats(token[4]))
 		{
 			pos = string_to_vect(token[1]);
-			j = (int)ft_atof(token[2]);
+			j = (int)ft_atof(token[4]);
+			printf(">>> %d\n", j);
 			while (y <= j){
 				x = 0;
 				while (x <= j){

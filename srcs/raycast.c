@@ -6,7 +6,7 @@
 /*   By: babdelka <babdelka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/26 15:14:20 by babdelka          #+#    #+#             */
-/*   Updated: 2021/02/27 18:27:47 by babdelka         ###   ########.fr       */
+/*   Updated: 2021/03/06 17:31:03 by babdelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,34 @@ int				shadow_cast(t_object *lst, t_ray *ray, float *tmin)
 		p = p->next;
 	}
 	return (0);
+}
+
+t_object			*shadow_l(t_object *lst, t_ray *ray, float *tmin)
+{
+	t_object	*p;
+	float		t;
+	t_ray		ra;
+	t_object	*null;
+	null = NULL;
+
+	t = INFINITY;
+	p = lst;
+	while (p)
+	{
+		ra = ft_transform_ray(p, ray, 1);
+		if (p->type == SPHERE)
+			sphere_intersect(p, &ra, &t);
+		else if (p->type == PLANE)
+			plane_intersect(p, &ra, &t);
+		else if (p->type == CYLINDER)
+			cylinder_intersect(p, &ra, &t);
+		else if (p->type == CONE)
+			cone_intersect(p, &ra, &t);
+		if (t < *tmin)
+			return (p);
+		p = p->next;
+	}
+	return (null);
 }
 
 t_vec	shadowinside(t_mx *mx, t_vec color, t_hit hit)
